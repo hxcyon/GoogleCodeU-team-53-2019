@@ -21,13 +21,21 @@ import PropTypes from 'prop-types';
  * A message card contaning a sender, timestamp, and content body.
  * @return The html representation of the card.
  */
+
+
+
 const Message = function(props) {
+
+  function createMarkup() {
+    return {__html: props.content};
+  }
+
   return (
     <div className='Message message-div'>
       <div className='message-header'>
         {props.sender + ' - ' + new Date(props.timestamp)}
       </div>
-      <div className='message-body'>{props.content}</div>
+      <div className='message-body'dangerouslySetInnerHTML={createMarkup()} />
     </div>
   );
 };
