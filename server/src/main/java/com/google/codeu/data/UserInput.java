@@ -21,6 +21,12 @@ public class UserInput {
 
     Parser parser = Parser.builder(options).build();
     HtmlRenderer renderer = HtmlRenderer.builder(options).build();
+    if (markdownString == null) {
+      System.out.println("FALSE!!!!");
+    } else  {
+      System.out.println("TRUE!!!!");
+    }
+    System.out.println(markdownString);
     Node document = parser.parse(markdownString);
     String htmlString = renderer.render(document);
     return htmlString;
