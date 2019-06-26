@@ -81,7 +81,7 @@ function buildMessageDiv(message) {
 
   const bodyDiv = document.createElement('div');
   bodyDiv.classList.add('message-body');
-  bodyDiv.innerHTML = message.text;
+  bodyDiv.innerHTML = "<p>"+message.text+"</p>";
 
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message-div');
@@ -96,7 +96,8 @@ function buildUI() {
   setPageTitle();
   showMessageFormIfViewingSelf();
   fetchMessages();
-    fetchAboutMe();
+  fetchAboutMe();
+  turnIntoNewEditor();
 }
 
 /** Fetch aboutMe */
@@ -111,4 +112,10 @@ function fetchAboutMe(){
         }
         aboutMeContainer.innerHTML = aboutMe;
     });
+}
+
+/** Turn basic editor into a rich text editor*/
+function turnIntoNewEditor()  {
+  const config = {removePlugins: [ 'List', 'Table']};  
+  ClassicEditor.create( document.getElementById('message-input'), config);
 }
